@@ -329,7 +329,13 @@ contract RiseTokenVault is RisedleVault {
                 maxCollateralAmount = (riseTokenMetadata.maxRebalancingValue * (10**collateralDecimals)) / minimumCollateralPrice;
             }
             uint256 collateralSoldAmount = swap(riseTokenMetadata.swapContract, riseTokenMetadata.collateral, underlyingToken, maxCollateralAmount, borrowOrRepayAmount);
-            setRepayStates(token, borrowOrRepayAmount);
+
+            {
+                uint256 repayAmount = (collateralSoldAmount * collateralPrice) /
+                    (10**collateralDecimals);
+                setRepayStates(token, repayAmount);
+            }
+
             riseTokens[riseTokenMetadata.token].totalCollateralPlusFee -= collateralSoldAmount;
         }
 

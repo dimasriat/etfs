@@ -712,13 +712,13 @@ contract RiseTokenVaultExternalTest is DSTest {
         vault.rebalance(address(ethrise));
 
         // The nav should not change
-        assertEq(vault.getNAV(address(ethrise)), 49673745);
+        assertEq(vault.getNAV(address(ethrise)), 49748743);
 
         // The leverage ratio should change
-        assertEq(vault.getLeverageRatioInEther(address(ethrise)), 2732915506974559699); // 2.7x
+        assertEq(vault.getLeverageRatioInEther(address(ethrise)), 2728795539617955774); // 2.7x
 
         // The ETHRISE debt should be decreased
-        assertEq(vault.getOutstandingDebt(address(ethrise)), 3422574021);
+        assertEq(vault.getOutstandingDebt(address(ethrise)), 3419592082);
     }
 
     function testFail_ETHRISELeverageDownFailedWhenHighSlippage() public {
@@ -784,13 +784,13 @@ contract RiseTokenVaultExternalTest is DSTest {
         vault.rebalance(address(unirise));
 
         // The nav should change only smol amount
-        assertEq(vault.getNAV(address(unirise)), 4900473);
+        assertEq(vault.getNAV(address(unirise)), 4907871);
 
         // The leverage ratio should change
-        assertEq(vault.getLeverageRatioInEther(address(unirise)), 2760675142991299003); // 2.7x
+        assertEq(vault.getLeverageRatioInEther(address(unirise)), 2756513771449983098); // 2.7x
 
         // The UNIRISE debt should be increased
-        assertEq(vault.getOutstandingDebt(address(unirise)), 128646229);
+        assertEq(vault.getOutstandingDebt(address(unirise)), 128535913);
     }
 
     function testFail_ERC20RISELeverageDownFailedWhenHighSlippage() public {
